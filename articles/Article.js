@@ -18,7 +18,7 @@ const Article = connection.define('articles',{
 Category.hasMany(Article); // an category have many  articles
 Article.belongsTo(Category); // an artcile belong to a category
 
-Article.sync({foce:true})
+
 
 module.exports = Article;
 // create the tables of database
