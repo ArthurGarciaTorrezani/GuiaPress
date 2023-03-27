@@ -7,6 +7,13 @@ router.get("/categories",(req,res)=>{
     res.send("categories")
 });
 
+router.get("/admin/categories",(req,res)=>{
+    Category.findAll().then(categories =>{
+        res.render("admin/categories/index",
+        {categories:categories});
+    })
+});
+
 router.get("/admin/categories/new",(req,res)=>{
     res.render("admin/categories/new");
 });
@@ -64,12 +71,6 @@ router.get("/admin/categories/edit/:id",(req,res)=>{
     })
 });
 
-router.get("/admin/categories",(req,res)=>{
-    Category.findAll().then(categories =>{
-        res.render("admin/categories/index",
-        {categories:categories});
-    })
-});
 
 router.post("/categories/update",(req,res)=>{
     var id = req.body.id
