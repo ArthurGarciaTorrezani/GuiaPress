@@ -3,15 +3,28 @@ const app = express();
 
 const bodyParser = require("body-parser");
 
+const session = require('express-session')
+
 const connection = require("./database/database");
 
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
+const usersController = require("./users/UsersController");
 
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
+const User = require("./users/User");
+
 
 app.set("view engine","ejs");
+
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 30000 }
+}));
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -28,8 +41,8 @@ connection
     })
 
 app.use("/",categoriesController);
-
 app.use("/",articlesController);
+app.use("/",usersController);
 
 app.get("/",(req,res)=>{
     Article.findAll({

@@ -1,0 +1,21 @@
+<%- include("../../partials/header.ejs") %> <!-- every ../ it returns a folder -->
+<body> 
+<%- include("../../partials/navbar.ejs") %>
+<div class="container">
+    <hr>
+    <div class="card mt-5">
+        <div class="card-header">
+            <h2>Register of user</h2>
+        </div>
+        <div class="card-body">
+        <form method="post" action="/admin/users/save">
+            <input class="form-control" type="text" name="name" placeholder="Name" required><br>
+            <input class="form-control" type="email" name="email" placeholder="example@gmail.com" required><br>
+            <input class="form-control" type="password" name="password" placeholder="**********" required><br>
+            <button class="btn btn-success" type="submit">Register</button>
+        </form>
+        </div>
+    </div>
+</div>
+</body>
+<%- include("../../partials/footer.ejs") %>
